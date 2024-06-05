@@ -10,10 +10,23 @@ function newGame() {
   game.playerMoves = [];
   game.score = 0;
   showScore();
+  addTurn();
 }
 
 function showScore() {
   document.getElementById("score").innerText = game.score;
 }
 
-module.exports = { game, newGame, showScore };
+function addTurn() {
+  game.playerMoves = [];
+  game.currentGame.push(game.choices[Math.floor(Math.random() * 4)]);
+}
+
+function lightsOn(circ) {
+  document.getElementById(circ).classList.add("light");
+  setTimeout(() => {
+    document.getElementById(circ).classList.remove("light");
+  }, 400);
+}
+
+module.exports = { game, newGame, showScore, addTurn, lightsOn };
